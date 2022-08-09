@@ -1,16 +1,22 @@
 import random
 
+def play():
+    user = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors\n")
+    computer = random.choice(['r','p','s'])
 
-def guess(x):
-    random_number = random.randint(1, x)
-    guess = 0
-    while guess != random_number:
-        guess = int(input(f'type a number from 1 to {x}: '))
-        if guess < random_number:
-            print("too low")
-        elif guess > random_number:
-          print("too high")
+    if user == computer:
+        return "it's a tie"
 
-    print(f"congrats!!!")
+    if is_win(user, computer):
+        return 'you won!!'
 
-guess(100)
+    return 'you lose!!'
+
+def is_win(player, opponent):
+    # return true if player wins
+    # r > s, s > p, p > r
+    if (player == 'r' and opponent == 's') or (player == 's' and opponent == 'p') or \
+        (player == 'p' and opponent == 'r'): return True
+
+
+print(play())
